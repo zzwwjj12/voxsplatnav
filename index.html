@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="VoxSplatNav project page: 3D Gaussian Splatting to executable voxel-ESDF navigation for safe indoor UAV control.">
+  <meta property="og:title" content="VoxSplatNav">
+  <meta property="og:description" content="A 3D Gaussian Splatting-to-Policy Framework for Safe UAV Navigation">
+  <meta property="og:image" content="assets/images/framework.webp">
+  <title>VoxSplatNav</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Academic Project Page</div>
+      <h1>VoxSplatNav</h1>
+      <p class="subtitle">A 3D Gaussian Splatting-to-Policy Framework for Safe UAV Navigation in Indoor Voxelized Environments</p>
+      <p class="authors">Project page for the manuscript under preparation</p>
+      <div class="affiliation">Jilin Agricultural University</div>
+
+      <nav class="button-row" aria-label="Project links">
+        <a class="button primary" href="assets/paper/VoxSplatNav_manuscript.pdf">Paper</a>
+        <a class="button" href="#video">Video</a>
+        <a class="button disabled" href="#" aria-disabled="true" title="Replace this button with your public code repository">Code</a>
+      </nav>
+
+      <div class="metric-grid" aria-label="Headline results">
+        <div class="metric">
+          <strong>97.38%</strong>
+          <span>Success rate</span>
+        </div>
+        <div class="metric">
+          <strong>131.35</strong>
+          <span>Evaluation reward</span>
+        </div>
+        <div class="metric">
+          <strong>0.1868 m</strong>
+          <span>Safety clearance</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="video" class="section">
+      <div class="section-heading">
+        <span>01</span>
+        <h2>Project Video</h2>
+      </div>
+      <p class="section-lead">The recommended video should show the complete chain from mobile image capture and 3DGS reconstruction to render-to-voxel conversion, policy rollout, and representative UAV trajectories.</p>
+
+      <div class="video-shell">
+        <video id="project-video" controls playsinline preload="metadata" poster="assets/images/qualitative_cases.webp">
+          <source src="assets/video/voxsplatnav_project_video.mp4" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+        <div id="video-placeholder" class="video-placeholder" hidden>
+          <strong>Project video file is not included yet.</strong>
+          <span>Place the final MP4 at <code>assets/video/voxsplatnav_project_video.mp4</code>. The player will appear automatically.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <span>02</span>
+        <h2>Abstract</h2>
+      </div>
+      <div class="prose">
+        <p>Three-dimensional Gaussian Splatting (3DGS) enables high-fidelity reconstruction of real-world scenes from multi-view images or video, but its native representation is designed primarily for rendering rather than collision checking and clearance-aware control. VoxSplatNav bridges this gap by constructing an executable voxel-based Euclidean signed distance field from the reconstructed scene and learning a continuous UAV navigation policy over local occupancy, clearance, goal-relative, motion, and trajectory-memory cues.</p>
+        <p>The method combines masked voxel pretraining, memory-conditioned expert routing, and trajectory-quality fusion for long-horizon policy optimization. Under random start-goal perturbations across eight reconstructed indoor scenes, VoxSplatNav achieves a 97.38% success rate while maintaining favorable navigation reward and safety clearance.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <span>03</span>
+        <h2>Framework</h2>
+      </div>
+      <figure class="media-card">
+        <img src="assets/images/framework.webp" alt="Overview of the VoxSplatNav reconstruction, voxelization, policy learning, and navigation pipeline">
+        <figcaption>Overall workflow from reconstructed scene representation to executable geometry and safe UAV navigation.</figcaption>
+      </figure>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <span>04</span>
+        <h2>Policy Architecture</h2>
+      </div>
+      <figure class="media-card">
+        <img src="assets/images/policy_architecture.webp" alt="VoxSplatNav policy architecture with voxel encoder, memory-conditioned routing, experts, and trajectory-quality optimization">
+        <figcaption>The downstream policy fuses local voxel-ESDF geometry, motion state, goal cues, and trajectory memory for continuous three-dimensional velocity control.</figcaption>
+      </figure>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <span>05</span>
+        <h2>Results</h2>
+      </div>
+      <div class="two-column">
+        <figure class="media-card">
+          <img src="assets/images/success_rate.webp" alt="Success-rate comparison among reinforcement learning baselines, ablations, and VoxSplatNav">
+          <figcaption>Robustness comparison under random perturbation tests.</figcaption>
+        </figure>
+        <figure class="media-card">
+          <img src="assets/images/ablation.webp" alt="Performance degradation after removing key VoxSplatNav components">
+          <figcaption>Contribution of the principal representation, routing, and trajectory-level optimization components.</figcaption>
+        </figure>
+      </div>
+      <figure class="media-card wide">
+        <img src="assets/images/training_dynamics.webp" alt="Training dynamics of VoxSplatNav and comparison variants">
+        <figcaption>Training dynamics in reward, episode steps, success rate, and path length.</figcaption>
+      </figure>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <span>06</span>
+        <h2>Qualitative Navigation</h2>
+      </div>
+      <figure class="media-card">
+        <img src="assets/images/qualitative_cases.webp" alt="Representative UAV trajectories in reconstructed indoor scenes">
+        <figcaption>Representative fixed start-goal trajectories in reconstructed indoor environments.</figcaption>
+      </figure>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <span>07</span>
+        <h2>Deployment Pathway</h2>
+      </div>
+      <div class="deployment-grid">
+        <article>
+          <h3>Offline workstation</h3>
+          <p>Mobile image capture, SfM initialization, 3DGS optimization, depth/opacity rendering, volumetric fusion, voxel-ESDF construction, masked pretraining, and reinforcement-learning optimization.</p>
+        </article>
+        <article>
+          <h3>Onboard UAV</h3>
+          <p>Visual-inertial localization, local voxel-ESDF query, policy inference, safety checking, and bounded velocity-reference transmission to a conventional low-level flight controller.</p>
+        </article>
+        <article>
+          <h3>Safety boundary</h3>
+          <p>Online depth sensing can supplement the static map, while command limiting, obstacle inflation, loss-of-localization fallback, hovering, and emergency landing remain independent safety mechanisms.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <span>08</span>
+        <h2>BibTeX</h2>
+      </div>
+      <pre class="bibtex"><code>@article{voxsplatnav2026,
+  title   = {VoxSplatNav: A 3D Gaussian Splatting-to-Policy Framework
+             for Safe UAV Navigation in Indoor Voxelized Environments},
+  author  = {Author names to be updated},
+  journal = {ISPRS Journal of Photogrammetry and Remote Sensing},
+  year    = {2026}
+}</code></pre>
+    </section>
+  </main>
+
+  <footer>
+    <p>VoxSplatNav project page. Replace author, paper, code, video, and final citation details before public release.</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
